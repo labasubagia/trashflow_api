@@ -16,7 +16,7 @@ class UserService {
       const user = this.userModel.findOneAndUpdate(
         { email },
         { email, image, phone, address, latitude, longitude },
-        { upsert: true, new: true },
+        { upsert: true, new: true, session },
       );
       await session.commitTransaction();
       session.endSession();

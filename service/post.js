@@ -32,7 +32,7 @@ class PostService {
       const post = await this.postModel.findOneAndUpdate(
         { _id: id ? Types.ObjectId(id) : Types.ObjectId() },
         payload,
-        { upsert: true, new: true },
+        { upsert: true, new: true, session },
       );
       await session.commitTransaction();
       session.endSession();
