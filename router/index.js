@@ -6,7 +6,7 @@ const userRouter = require('./user');
 
 const router = Router();
 
-router.get('/', authMiddleware({ userModel: User }), (_, res) => {
+router.get('/', (_, res) => {
   return res.json({ success: true, data: null, message: 'Server is active' });
 });
 
