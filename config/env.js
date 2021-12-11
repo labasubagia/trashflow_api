@@ -3,7 +3,7 @@ const env = require('dotenv');
 env.config();
 
 const EnvConfig = {
-  SERVER_PORT: process.env.SERVER_PORT || 5000,
+  PORT: process.env.PORT || 5000,
 
   MONGO_DB_URL: process.env.MONGO_DB_URL,
   MONGO_DB_NAME: process.env.MONGO_DB_NAME,

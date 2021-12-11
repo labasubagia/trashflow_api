@@ -4,7 +4,7 @@ const router = require('../router');
 
 class AppLoader {
   constructor({ port } = {}) {
-    this.port = port || EnvConfig.SERVER_PORT;
+    this.port = port || EnvConfig.PORT;
     this.app = express();
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
