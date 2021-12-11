@@ -13,7 +13,7 @@ class UserService {
       if (file) {
         image = await FileHelper.uploadImage(file);
       }
-      const user = this.userModel.findOneAndUpdate(
+      const user = await this.userModel.findOneAndUpdate(
         { email },
         { email, image, phone, address, latitude, longitude },
         { upsert: true, new: true, session },
