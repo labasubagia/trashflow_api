@@ -3,6 +3,7 @@ const authMiddleware = require('../middleware/auth');
 const User = require('../models/user');
 const postRouter = require('./post');
 const userRouter = require('./user');
+const categoryRouter = require('./category');
 
 const router = Router();
 
@@ -12,6 +13,7 @@ router.get('/', (_, res) => {
 
 router.use('/post', authMiddleware({ userModel: User }), postRouter);
 router.use('/user', userRouter);
+router.use('/category', categoryRouter);
 
 router.use((_, res) => {
   return res

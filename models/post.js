@@ -1,5 +1,6 @@
 const { Schema, model, Types } = require('mongoose');
 const User = require('./user');
+const Category = require('./category');
 const PostConfig = require('../config/post');
 
 const schema = new Schema(
@@ -10,7 +11,10 @@ const schema = new Schema(
     image: { type: String, default: null },
     price: { type: Number, default: 0 },
     type: { type: String, enum: PostConfig.TYPES, default: null },
-    categories: [{ type: String, enum: PostConfig.CATEGORIES, default: null }],
+    category_ids: {
+      type: [{ type: Types.ObjectId, ref: Category, default: null }],
+      default: [],
+    },
   },
   {
     timestamps: {

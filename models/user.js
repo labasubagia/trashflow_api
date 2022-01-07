@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const schema = new Schema(
   {
     email: { type: String, unique: true, required: true },
-    phone: { type: String, unique: true, required: true },
+    phone: { type: String, default: null },
     image: { type: String, default: null },
     address: { type: String, default: null },
     latitude: { type: Number, default: null },
