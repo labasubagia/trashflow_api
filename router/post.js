@@ -3,6 +3,7 @@ const multer = require('multer');
 const PostController = require('../controller/post');
 const Post = require('../models/post');
 const User = require('../models/user');
+const Category = require('../models/category');
 const PostService = require('../service/post');
 
 const upload = multer({ storage: multer.memoryStorage() });
@@ -11,6 +12,7 @@ const controller = new PostController({
   postService: new PostService({
     postModel: Post,
     userModel: User,
+    categoryModel: Category,
   }),
 });
 
