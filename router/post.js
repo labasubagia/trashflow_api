@@ -1,12 +1,9 @@
 const { Router } = require('express');
-const multer = require('multer');
 const PostController = require('../controller/post');
 const Post = require('../models/post');
 const User = require('../models/user');
 const Category = require('../models/category');
 const PostService = require('../service/post');
-
-const upload = multer({ storage: multer.memoryStorage() });
 
 const controller = new PostController({
   postService: new PostService({
@@ -18,24 +15,11 @@ const controller = new PostController({
 
 const postRouter = Router();
 
-postRouter.post('/', upload.single('image'), (req, res, next) => {
-  return controller.create(req, res, next);
-});
-
-postRouter.post('/:id', upload.single('image'), (req, res, next) => {
-  return controller.update(req, res, next);
-});
-
-postRouter.get('/', (req, res, next) => {
-  return controller.getByFilter(req, res, next);
-});
-
-postRouter.get('/:id', (req, res, next) => {
-  return controller.getDetail(req, res, next);
-});
-
-postRouter.delete('/:id', (req, res, next) => {
-  return controller.delete(req, res, next);
-});
+postRouter.post('/', ...controller.create());
+postRouter.post('/:id', ...controller.update());
+postRouter.get('/', ...controller.getByFilter());
+postRouter.get('/mine', ...controller.getAllMine());
+postRouter.get('/:id', ...controller.getDetail());
+postRouter.delete('/:id', ...controller.delete());
 
 module.exports = postRouter;
