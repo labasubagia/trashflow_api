@@ -6,7 +6,16 @@ class UserService {
     this.userModel = userModel;
   }
 
-  async upsert({ email, image, phone, address, latitude, longitude, file }) {
+  async upsert({
+    email,
+    name,
+    image,
+    phone,
+    address,
+    latitude,
+    longitude,
+    file,
+  }) {
     const session = await startSession();
     try {
       session.startTransaction();
@@ -15,7 +24,7 @@ class UserService {
       }
       const user = await this.userModel.findOneAndUpdate(
         { email },
-        { email, image, phone, address, latitude, longitude },
+        { email, name, image, phone, address, latitude, longitude },
         { upsert: true, new: true, session },
       );
       await session.commitTransaction();
