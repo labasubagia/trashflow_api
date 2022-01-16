@@ -15,12 +15,15 @@ class UserService {
     latitude,
     longitude,
     file,
+    image_url,
   }) {
     const session = await startSession();
     try {
       session.startTransaction();
       if (file) {
         image = await FileHelper.uploadImage(file);
+      } else if (image_url) {
+        image = image_url;
       }
       const user = await this.userModel.findOneAndUpdate(
         { email },
